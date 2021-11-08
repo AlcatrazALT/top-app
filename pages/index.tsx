@@ -1,8 +1,10 @@
+import { Htag } from "../components";
+import { HtagType } from "../components/Htag/Htag.props";
 
 export default function Home() {
   return (
-    <div>
-      <h3>Works</h3>
-    </div>
+    <>
+      <Htag tag={HtagType.h1}>Text</Htag>
+    </>
   );
 }
