@@ -40,7 +40,7 @@
 	margin-left: 10px;
 }
 
-.arrow-down {
+.down {
 	transition: all 0.2s;
 	transform: rotate(90deg);
 }
