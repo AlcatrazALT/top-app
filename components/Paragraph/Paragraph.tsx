@@ -12,7 +12,8 @@ const Paragraph = ({children, size = 'm', className, ...props}: ParagraphProps) 
           [styles.s]: size === 's',
           [styles.m]: size === 'm',
           [styles.l]: size === 'l',
-        })}
+        })
+      }
       {...props}
     >
       {children}

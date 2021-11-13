@@ -1,4 +1,4 @@
-import { Button, Htag, Paragraph } from "../components";
+import { Button, Htag, Paragraph, Tag } from "../components";
 import { HtagType } from "../components/Htag/Htag.props";
 
 export default function Home() {
@@ -10,6 +10,8 @@ export default function Home() {
       <Paragraph size='s'>Paragraph</Paragraph>
       <Paragraph size='m'>Paragraph</Paragraph>
       <Paragraph size='l'>Paragraph</Paragraph>
+      <Tag size='s' color='green'>Tag</Tag>
+      <Tag size='m' color='primary'>Tag</Tag>
     </>
   );
 }
