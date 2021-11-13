@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <>
       <Htag tag={HtagType.h1}>Text</Htag>
-      <Button appearance='primary'>Click</Button>
-      <Button appearance='ghost'>Click</Button>
+      <Button appearance='primary' arrow='down'>Click</Button>
+      <Button appearance='ghost' arrow='right'>Click</Button>
     </>
   );
 }
