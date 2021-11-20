@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Button, Htag, Paragraph, Tag } from "../components";
 import { HtagType } from "../components/Htag/Htag.props";
 
-export default function Home() {
+const Home = () => {
+  const [counter, setCounter] = useState(0);
+
   return (
     <>
-      <Htag tag={HtagType.h1}>Text</Htag>
+      <Htag tag={HtagType.h1}>{counter}</Htag>
+      <Button appearance='primary' onClick={() => setCounter(prev => prev + 1)}>Add</Button>
       <Button appearance='primary' arrow='down'>Click</Button>
       <Button appearance='ghost' arrow='right'>Click</Button>
       <Paragraph size='s'>Paragraph</Paragraph>
@@ -14,4 +18,6 @@ export default function Home() {
       <Tag size='m' color='primary'>Tag</Tag>
     </>
   );
-}
+};
+
+export default Home;
