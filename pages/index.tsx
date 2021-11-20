@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Htag, Paragraph, Tag } from "../components";
+import { Button, Htag, Paragraph, Rating, Tag } from "../components";
 import { HtagType } from "../components/Htag/Htag.props";
 
 const Home = () => {
@@ -16,6 +16,7 @@ const Home = () => {
       <Paragraph size='l'>Paragraph</Paragraph>
       <Tag size='s' color='green'>Tag</Tag>
       <Tag size='m' color='primary'>Tag</Tag>
+      <Rating rating={4} />
     </>
   );
 };
