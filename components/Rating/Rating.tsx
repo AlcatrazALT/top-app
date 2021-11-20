@@ -12,12 +12,18 @@ const Rating = ({isEditable = false, rating, setRating, className, ...props}: Ra
   }, [rating]);
 
   const constructRating = (currentRating: number) => {
-    const updatedArray = ratingArray.map((rating, index) => {
+    const updatedArray = ratingArray.map((ratingEl, index) => {
       return (
         <span
           className={cn(styles.star, {
-            [styles.filled]: index < currentRating
+            [styles.filled]: index < currentRating,
+            [styles.editable]: isEditable
           })}
+          onMouseEnter={() => changeDisplay(index+1)}
+          onMouseLeave={() => changeDisplay(rating)}
+          onClick={() => onClick(index+1)}
+          tabIndex={isEditable ? 0 : -1}
+          onKeyDown={(event) => isEditable && onKeyDown(index+1, event)}
         >
           <StarIcon/>
         </span>
@@ -25,6 +31,25 @@ const Rating = ({isEditable = false, rating, setRating, className, ...props}: Ra
     });
 
     setRatingArray(updatedArray);
+  };
+
+  const changeDisplay = (rating: number) => {
+    if(isEditable) {
+      constructRating(rating);
+    }
+  };
+
+  const onClick = (updatedRating: number) => {
+    if(isEditable && setRating) {
+      setRating(updatedRating);
+    }
+  };
+
+  const onKeyDown = (updatedRating: number, event: React.KeyboardEvent<HTMLSpanElement>) => {
+    if(event.code != 'Space' || !setRating) {
+      return;
+    }
+    setRating(updatedRating);
   };
 
   return (
