@@ -1,6 +1,6 @@
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-import Layout from "./layout/Layout";
+import {withLayoutHOC} from "./layout/Layout";
 import Sidebar from "./sidebar/Sidebar";
 
-export {Footer, Header, Layout, Sidebar};
+export {Footer, Header, Sidebar, withLayoutHOC};

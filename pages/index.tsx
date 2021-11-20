@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Button, Htag, Paragraph, Rating, Tag } from "../components";
-import { HtagType } from "../components/Htag/Htag.props";
-import { Layout } from "../layouts";
+import { Button, Paragraph, Rating, Tag } from "../components";
+import { withLayoutHOC } from "../layouts";
 
 const Home = () => {
   const [rating, setRating] = useState(4);
 
   return (
-    <Layout>
+    <>
       <Button appearance='primary' arrow='down'>Click</Button>
       <Button appearance='ghost' arrow='right'>Click</Button>
       <Paragraph size='s'>Paragraph</Paragraph>
@@ -16,8 +15,8 @@ const Home = () => {
       <Tag size='s' color='green'>Tag</Tag>
       <Tag size='m' color='primary'>Tag</Tag>
       <Rating rating={rating} isEditable setRating={setRating}/>
-    </Layout>
+    </>
   );
 };
 
-export default Home;
+export default withLayoutHOC(Home);

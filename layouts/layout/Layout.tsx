@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { LayoutProps } from './Layout.props';
 import styles from './Layout.module.css';
 import cn from 'classnames';
@@ -21,4 +21,12 @@ const Layout = ({children}: LayoutProps) => {
   );
 };
 
-export default Layout;
+export const withLayoutHOC = <T extends Record<string, unknown>>(Component: FunctionComponent<T>) => {
+  return function withLayoutComponent(props: T) {
+    return (
+      <Layout>
+        <Component {...props}/>
+      </Layout>
+    );
+  };
+};
