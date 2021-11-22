@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 const Footer = ({...props}: FooterProps) => {
   return (
-    <div>
+    <div {...props}>
       <h4>Footer</h4>
     </div>
   );

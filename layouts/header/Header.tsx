@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 const Header = ({...props}: HeaderProps) => {
   return (
-    <div>
+    <div {...props}>
       <h4>Header</h4>
     </div>
   );

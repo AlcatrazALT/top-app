@@ -8,16 +8,14 @@ import Footer from '../footer/Footer';
 
 const Layout = ({children}: LayoutProps) => {
   return (
-    <>
-      <Header />
-      <main>
-        <Sidebar />
-        <div>
+    <div className={styles.wrapper}>
+      <Header className={styles.header} />
+      <Sidebar className={styles.sidebar} />
+      <div className={styles.body}>
           {children}
-        </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+      <Footer className={styles.footer} />
+    </div>
   );
 };
 
