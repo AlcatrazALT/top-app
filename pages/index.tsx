@@ -12,9 +12,6 @@ interface HomeProps extends Record<string, unknown> {
 const Home = ({menu, firstCategory}: HomeProps) => {
   return (
     <>
-      <ul>
-        {menu.map((m, i) => (<li key={i}>{m._id.secondCategory}</li>))}
-      </ul>
     </>
   );
 };

@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { LayoutProps } from './Layout.props';
 import styles from './Layout.module.css';
-import cn from 'classnames';
 import Header from '../header/Header';
 import Sidebar from '../sidebar/Sidebar';
 import Footer from '../footer/Footer';
+import { AppContextProvider } from '../../contexts/app.context';
+import { IAppContext } from '../../types';
 
 const Layout = ({children}: LayoutProps) => {
   return (
@@ -19,12 +20,14 @@ const Layout = ({children}: LayoutProps) => {
   );
 };
 
-export const withLayoutHOC = <T extends Record<string, unknown>>(Component: FunctionComponent<T>) => {
+export const withLayoutHOC = <T extends Record<string, unknown> & IAppContext>(Component: FunctionComponent<T>) => {
   return function withLayoutComponent(props: T) {
     return (
-      <Layout>
-        <Component {...props}/>
-      </Layout>
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+        <Layout>
+          <Component {...props}/>
+        </Layout>
+      </AppContextProvider>
     );
   };
 };
