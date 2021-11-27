@@ -40,7 +40,7 @@ const Menu = () => {
 
   const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
     return (
-      <div>
+      <div className={styles.secondBlock}>
         {menu.map(m => (
           <div key={m._id.secondCategory}>
             <div className={styles.secondLevel}>
@@ -62,7 +62,7 @@ const Menu = () => {
       pages.map(page => (
         <a
           href={`/${route}/${page.alias}`}
-          className={cn(styles.thirdLevel,{[styles.thirdLevelActive] : true})}
+          className={cn(styles.thirdLevel,{[styles.thirdLevelActive] : false})}
         >
           {page.category}
         </a>
