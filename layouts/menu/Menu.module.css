@@ -43,6 +43,11 @@
 
 .secondLevelBlock {
 	margin-top: 12px;
+	display: none;
+}
+
+.secondLevelBlockOpened {
+	display: block;
 }
 
 .secondLevelBlockOpened :last-child {
