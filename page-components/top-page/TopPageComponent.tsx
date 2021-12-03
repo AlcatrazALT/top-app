@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, HhData, Htag, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
+import { TopLevelCategory } from '../../types';
 
 const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps): JSX.Element => {
   return (
@@ -25,7 +26,7 @@ const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps
         <Tag color='red' size='m'>hh.ru</Tag>
       </div>
 
-      {page.hh && <HhData {...page.hh} />}
+      {firstCategory === TopLevelCategory.Courses &&  page.hh && <HhData {...page.hh} />}
     </div>
   );
 };

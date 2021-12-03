@@ -39,7 +39,7 @@
 	}
 
 	.header {
-		display: block;
+		display: block !important;
 	}
 
 	.sidebar {

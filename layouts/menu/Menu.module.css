@@ -42,8 +42,9 @@
 }
 
 .secondLevelBlock {
-	margin-top: 12px;
 	display: none;
+
+	margin-top: 12px;
 }
 
 .secondLevelBlockOpened {
