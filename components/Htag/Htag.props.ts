@@ -1,12 +1,6 @@
 import { ReactNode } from "react";
 
 export interface HtagProps {
-  tag: HtagType;
+  tag: 'h1' | 'h2' | 'h3';
   children: ReactNode
-}
-
-export enum HtagType {
-  'h1',
-  'h2',
-  'h3',
 }
