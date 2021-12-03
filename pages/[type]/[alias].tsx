@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
 import { firstLevelMenu } from '../../helpers';
 import { withLayoutHOC } from '../../layouts';
+import TopPageComponent from '../../page-components/top-page/TopPageComponent';
 import { MenuItem, TopLevelCategory, TopPageModel, ProductModel } from '../../types';
 
 interface TopPageProps extends Record<string, unknown> {
@@ -13,11 +14,12 @@ interface TopPageProps extends Record<string, unknown> {
   products: ProductModel[]
 }
 
-const TopPage = ({products}: TopPageProps) => {
+const TopPage = ({products, firstCategory, page}: TopPageProps) => {
   return (
-    <>
-      {products && products.length}
-    </>
+    <TopPageComponent 
+      firstCategory={firstCategory}
+      page={page} 
+      products={products} />
   );
 };
 
