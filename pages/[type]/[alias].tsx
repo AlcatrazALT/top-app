@@ -6,14 +6,14 @@ import { firstLevelMenu } from '../../helpers';
 import { withLayoutHOC } from '../../layouts';
 import { MenuItem, TopLevelCategory, TopPageModel, ProductModel } from '../../types';
 
-interface CourseProps extends Record<string, unknown> {
+interface TopPageProps extends Record<string, unknown> {
   menu: MenuItem[],
   firstCategory: TopLevelCategory,
   page: TopPageModel,
   products: ProductModel[]
 }
 
-const Course = ({products}: CourseProps) => {
+const TopPage = ({products}: TopPageProps) => {
   return (
     <>
       {products && products.length}
@@ -21,7 +21,7 @@ const Course = ({products}: CourseProps) => {
   );
 };
 
-export default withLayoutHOC(Course);
+export default withLayoutHOC(TopPage);
 
 export const getStaticPaths: GetStaticPaths = async () => {
   let paths: string[] = [];
@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<CourseProps> = async ({params}: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<TopPageProps> = async ({params}: GetStaticPropsContext<ParsedUrlQuery>) => {
   if(!params){
     return {
       notFound: true
