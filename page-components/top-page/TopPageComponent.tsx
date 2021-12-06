@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, HhData, Htag, Tag } from '../../components';
+import { Advantages, HhData, Htag, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
 import { TopLevelCategory } from '../../types';
@@ -27,6 +27,12 @@ const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps
       </div>
 
       {firstCategory === TopLevelCategory.Courses &&  page.hh && <HhData {...page.hh} />}
+      {page.advantages && page.advantages.length > 0 && <>
+        <Htag tag='h2'>
+          Advantages
+        </Htag>
+        <Advantages advantages={page.advantages} />
+      </>}
     </div>
   );
 };
