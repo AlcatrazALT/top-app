@@ -1,12 +1,12 @@
 import React from 'react';
-import { Advantages, HhData, Htag, Tag } from '../../components';
+import { Advantages, HhData, Htag, Paragraph, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
 import { TopLevelCategory } from '../../types';
 
 const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
+    <div>
       <div className={styles.title}>
         <Htag tag='h1'>{page.title}</Htag>
         {products && <Tag color='gray' size='m'>{products.length}</Tag>}
@@ -33,6 +33,11 @@ const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps
         </Htag>
         <Advantages advantages={page.advantages} />
       </>}
+      {page.seoText && <Paragraph>{page.seoText}</Paragraph>}
+      <Htag tag='h2'>Skills</Htag>
+      {page.tags.map(tag => (
+        <Tag key={tag} color='primary'>{tag}</Tag>
+      ))}
     </div>
   );
 };
