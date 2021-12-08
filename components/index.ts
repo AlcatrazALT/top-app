@@ -6,6 +6,7 @@ import HhData from "./hhData/HhData";
 import Htag from "./Htag/Htag";
 import Paragraph from "./Paragraph/Paragraph";
 import Rating from "./Rating/Rating";
+import Sort from "./Sort/Sort";
 import Tag from "./Tag/Tag";
 
-export { Htag, Button, Paragraph, Tag, Rating, Card, HhData, Advantages };
+export { Htag, Button, Paragraph, Tag, Rating, Card, HhData, Advantages, Sort };
