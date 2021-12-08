@@ -24,7 +24,7 @@ const Sort = ({sort, setSort, className, ...props}: SortProps): JSX.Element => {
         )}
         onClick={() => setSort(SortEnum.Price)}
       >
-        <SortIcon className={styles.sortIcon} />By&nbsp;price
+        <SortIcon className={styles.sortIcon} />By price
       </span>
     </div>
   );
