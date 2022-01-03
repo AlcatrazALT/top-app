@@ -82,3 +82,38 @@
 .oldPrice {
   margin-left: 4px;
 }
+
+.category {
+  margin-top: 8px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.reviewButton {
+  margin-left: 20px;
+}
+
+.advantagesBlock {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.advantagesTitle {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.advantages {
+  border-left: 2px solid var(--green);
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+.disadvantages {
+  border-left: 2px solid var(--red);
+  padding-left: 16px;
+}

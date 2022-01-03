@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Product.module.css';
 import cn from 'classnames';
 import { ProductProps } from './Product.props';
-import { Button, Card, Rating, Tag } from '..';
+import { Button, Card, Divider, Rating, Tag } from '..';
 import { price } from '../../helpers';
 
 const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
@@ -27,7 +27,11 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       <div className={styles.tags}>
         {product.categories.map(category => {
           return (
-          <Tag key={category} color='ghost'>
+          <Tag
+            className={styles.category}
+            key={category}
+            color='ghost'
+          >
             {category}
           </Tag>);
         })}
@@ -41,9 +45,7 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       <div className={styles.rateTitle}>
         {product.reviewCount} reviews
       </div>
-      <div className={styles.hr}>
-        <hr className={styles.hr}/>
-      </div>
+      <Divider className={styles.hr} />
       <div className={styles.description}>
         {product.description}
       </div>
@@ -51,21 +53,26 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
         feature
       </div>
       <div className={styles.advantagesBlock}>
+        {product.advantages &&
         <div className={styles.advantages}>
-          <div>Advantages</div>
+          <div className={styles.advantagesTitle}>Advantages</div>
           {product.advantages}
-        </div>
+        </div>}
+
+        {product.disadvantages &&
         <div className={styles.disadvantages}>
-          <div>Disadvantages</div>
+          <div className={styles.advantagesTitle}>Disadvantages</div>
           {product.disadvantages}
-        </div>
+        </div>}
       </div>
-      <div className={styles.hr}>
-        <hr />
-      </div>
+      <Divider className={styles.hr} />
       <div className={styles.actions}>
         <Button appearance='primary'>Read more</Button>
-        <Button appearance='ghost' arrow={'right'}>Read reviews</Button>
+        <Button
+          className={styles.reviewButton}
+          appearance='ghost' 
+          arrow={'right'}
+        >Read reviews</Button>
       </div>
     </Card>
   );
