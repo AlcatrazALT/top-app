@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Product.module.css';
 import cn from 'classnames';
 import { ProductProps } from './Product.props';
-import { Card, Rating, Tag } from '..';
+import { Button, Card, Rating, Tag } from '..';
 
 const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
   return (
@@ -38,6 +38,32 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       </div>
       <div className={styles.rateTitle}>
         {product.reviewCount} reviews
+      </div>
+      <div className={styles.hr}>
+        <hr className={styles.hr}/>
+      </div>
+      <div className={styles.description}>
+        {product.description}
+      </div>
+      <div className={styles.feature}>
+        feature
+      </div>
+      <div className={styles.advantagesBlock}>
+        <div className={styles.advantages}>
+          <div>Advantages</div>
+          {product.advantages}
+        </div>
+        <div className={styles.disadvantages}>
+          <div>Disadvantages</div>
+          {product.disadvantages}
+        </div>
+      </div>
+      <div className={styles.hr}>
+        <hr />
+      </div>
+      <div className={styles.actions}>
+        <Button appearance='primary'>Read more</Button>
+        <Button appearance='ghost' arrow={'right'}>Read reviews</Button>
       </div>
     </Card>
   );
