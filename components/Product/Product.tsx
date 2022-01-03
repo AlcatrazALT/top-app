@@ -6,9 +6,9 @@ import { Card, Rating, Tag } from '..';
 
 const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
   return (
-    <Card>
+    <Card className={styles.product}>
       <div className={styles.logo}>
-        <img src={product.image} alt={product.title} />
+        <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} />
       </div>
       <div className={styles.title}>
         {product.title}
@@ -38,12 +38,6 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       </div>
       <div className={styles.rateTitle}>
         {product.reviewCount} reviews
-      </div>
-      <div
-        className={cn(className, styles.product)}
-        {...props}
-      >
-        {product.title}
       </div>
     </Card>
   );
