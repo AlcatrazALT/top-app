@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
 import React, { useState } from "react";
-import { Input } from "../components";
+import { Input, Textarea } from "../components";
 import { withLayoutHOC } from "../layouts";
 import { MenuItem } from "../types/menu.interface";
 
@@ -14,6 +14,7 @@ const Home = ({menu, firstCategory}: HomeProps) => {
   return (
     <>
       <Input placeholder="test" />
+      <Textarea placeholder="test" />
     </>
   );
 };
