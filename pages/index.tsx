@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
 import React, { useState } from "react";
+import { Input } from "../components";
 import { withLayoutHOC } from "../layouts";
 import { MenuItem } from "../types/menu.interface";
 
@@ -12,6 +13,7 @@ interface HomeProps extends Record<string, unknown> {
 const Home = ({menu, firstCategory}: HomeProps) => {
   return (
     <>
+      <Input placeholder="test" />
     </>
   );
 };
