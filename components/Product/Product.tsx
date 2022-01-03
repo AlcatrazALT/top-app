@@ -3,6 +3,7 @@ import styles from './Product.module.css';
 import cn from 'classnames';
 import { ProductProps } from './Product.props';
 import { Button, Card, Rating, Tag } from '..';
+import { price } from '../../helpers';
 
 const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
   return (
@@ -14,10 +15,11 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
         {product.title}
       </div>
       <div className={styles.price}>
-        {product.price}
+        {price(product.price)}
+        {product.oldPrice && <Tag className={styles.oldPrice} color='green'>{price(product.price - product.oldPrice)}</Tag>}
       </div>
       <div className={styles.credit}>
-        {product.credit}
+        {price(product.credit)}/<span className={styles.month}>month</span>
       </div>
       <div className={styles.rating}>
         <Rating rating={product.reviewAvg ?? product.initialRating} />
