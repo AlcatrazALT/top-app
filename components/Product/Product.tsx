@@ -4,13 +4,19 @@ import cn from 'classnames';
 import { ProductProps } from './Product.props';
 import { Button, Card, Divider, Rating, Tag } from '..';
 import { price } from '../../helpers';
+import Image from 'next/image';
 
 const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
   return (
     <Card className={styles.product}>
       <div className={styles.logo}>
-        <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} />
-      </div>
+        <Image
+          src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+          alt={product.title}
+          width={70}
+          height={70}
+        />
+        </div>
       <div className={styles.title}>
         {product.title}
       </div>
