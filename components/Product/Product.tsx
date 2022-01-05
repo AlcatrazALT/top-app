@@ -50,7 +50,13 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
         {product.description}
       </div>
       <div className={styles.feature}>
-        feature
+        {product.characteristics.map(characteristic => (
+          <div className={styles.characteristic} key={characteristic.name}>
+            <span className={styles.characteristicName}>{characteristic.name}</span>
+            <span className={styles.characteristicDots}></span>
+            <span className={styles.characteristicValue}>{characteristic.value}</span>
+          </div>
+        ))}
       </div>
       <div className={styles.advantagesBlock}>
         {product.advantages &&
