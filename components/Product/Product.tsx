@@ -77,7 +77,7 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
           {product.disadvantages}
         </div>}
       </div>
-      <Divider className={styles.hr} />
+      <Divider className={cn(styles.hr, styles.hr2)} />
       <div className={styles.actions}>
         <Button appearance='primary'>Read more</Button>
         <Button
