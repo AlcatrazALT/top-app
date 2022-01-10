@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Product.module.css';
 import cn from 'classnames';
 import { ProductProps } from './Product.props';
-import { Button, Card, Divider, Rating, Review, Tag } from '..';
+import { Button, Card, Divider, Rating, Review, ReviewForm, Tag } from '..';
 import { price } from '../../helpers';
 import Image from 'next/image';
 
@@ -99,11 +99,15 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       color='blue'
       >
         {product.reviews.map(review => (
-          <Review
-            key={review._id}
-            review={review}
-          />
+          <>
+            <Review
+              key={review._id}
+              review={review}
+            />
+            <Divider />
+          </>
         ))}
+        <ReviewForm productId={product._id} />
       </Card>
     </>
   );
