@@ -99,13 +99,12 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       color='blue'
       >
         {product.reviews.map(review => (
-          <>
+          <div key={review._id}>
             <Review
-              key={review._id}
               review={review}
             />
             <Divider />
-          </>
+          </div>
         ))}
         <ReviewForm productId={product._id} />
       </Card>
