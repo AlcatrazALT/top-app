@@ -215,6 +215,10 @@
     grid-area: rateTitle;
   }
 
+  .rateTitle a {
+    color: var(--primary);
+  }
+
   .hr {
     grid-area: hr;
   }
