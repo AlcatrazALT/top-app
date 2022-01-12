@@ -3,13 +3,18 @@ import styles from './Textarea.module.css';
 import cn from 'classnames';
 import { TextareaProps } from './Textarea.props';
 
-const Textarea = forwardRef(({className, ...props}: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
+const Textarea = forwardRef(({error, className, ...props}: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
   return (
-    <textarea
-      className={cn(className, styles.textarea)}
-      {...props}
-      ref={ref}
-    />
+    <div className={cn(styles.wrapper, className)}>
+      <textarea
+        className={cn(styles.textarea, {
+          [styles.error]: error
+        })}
+        {...props}
+        ref={ref}
+      />
+      {error && <span className={styles.errorMessage}>{error.message}</span>}
+    </div>
   );
 });
 

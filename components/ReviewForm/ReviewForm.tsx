@@ -8,7 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { IReviewForm } from './ReviewForm.interface';
 
 const ReviewForm = ({productId, className, ...props}: ReviewFormProps):JSX.Element => {
-  const {register, control, handleSubmit, formState} = useForm<IReviewForm>();
+  const {register, control, handleSubmit, formState: {errors}} = useForm<IReviewForm>();
 
   const onSubmit = (data: IReviewForm) => {
     console.log('data', data)
@@ -22,12 +22,14 @@ const ReviewForm = ({productId, className, ...props}: ReviewFormProps):JSX.Eleme
       >
         <Input
           placeholder='Name'
-          {...register('name')}
+          error={errors.name}
+          {...register('name', { required: {value: true, message: 'Name is required'}})}
         />
         <Input 
           className={styles.title} 
           placeholder='Review title'
-          {...register('title')}
+          error={errors.title}
+          {...register('title', { required: {value: true, message: 'Review title is required'}})}
         />
         <div className={styles.rating}>
           <span>Estimation:</span>
@@ -42,7 +44,8 @@ const ReviewForm = ({productId, className, ...props}: ReviewFormProps):JSX.Eleme
         <Textarea 
           className={styles.description} 
           placeholder='Review text'
-          {...register('description')}
+          error={errors.description}
+          {...register('description', { required: {value: true, message: 'Description is required'}})}
         />
         <div className={styles.submit}>
           <Button appearance='primary'>Send</Button>
