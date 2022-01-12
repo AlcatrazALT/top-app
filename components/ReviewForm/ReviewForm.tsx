@@ -36,8 +36,15 @@ const ReviewForm = ({productId, className, ...props}: ReviewFormProps):JSX.Eleme
           <Controller
             control={control}
             name='rating'
+            rules={{ required: {value: true, message: 'Rating is required'}}}
             render={({field}) => (
-              <Rating isEditable rating={field.value} setRating={field.onChange} ref={field.ref} />
+              <Rating
+                isEditable
+                rating={field.value}
+                setRating={field.onChange}
+                ref={field.ref}
+                error={errors.rating}
+              />
             )}
           />
         </div>
