@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReviewFormProps } from './ReviewForm.props';
 import cn from 'classnames';
 import styles from './ReviewForm.module.css';
 import { Button, Input, Rating, Textarea } from '..';
 import CloseIcon from './close.svg';
 import { Controller, useForm } from 'react-hook-form';
-import { IReviewForm } from './ReviewForm.interface';
+import { IReviewForm, IReviewSendResponse } from './ReviewForm.interface';
+import axios from 'axios';
+import { API } from '../../helpers';
 
 const ReviewForm = ({productId, className, ...props}: ReviewFormProps):JSX.Element => {
-  const {register, control, handleSubmit, formState: {errors}} = useForm<IReviewForm>();
+  const {register, control, handleSubmit, formState: {errors}, reset} = useForm<IReviewForm>();
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string>();
 
-  const onSubmit = (data: IReviewForm) => {
-    console.log('data', data)
+  const onSubmit = async (formData: IReviewForm) => {
+    try {
+      const {data} = await axios.post<IReviewSendResponse>(API.review.createDemo, {...formData, productId});
+      if(data.message) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        setError('Error');
+      }
+    }
+    catch (e) {
+      const err:any = e;
+      setError(err.message);
+    }
+    
   };
 
   return (
@@ -59,15 +76,23 @@ const ReviewForm = ({productId, className, ...props}: ReviewFormProps):JSX.Eleme
           <span className={styles.info}>* before publication, the review will undergo preliminary moderation and verification</span>
         </div>
       </div>
-      <div className={styles.success}>
+      {isSuccess &&
+      <div className={cn(styles.success, styles.panel)}>
         <div className={styles.successTitle}>
           Review sended
         </div>
         <div>
           The review will be published after verification.
         </div>
-        <CloseIcon className={styles.close} />
+        <CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
       </div>
+      }
+    {error &&
+      <div className={cn(styles.error, styles.panel)}>
+        {'Something went wrong, reload page'}
+        <CloseIcon className={styles.close} onClick={() => setError(undefined)} />
+      </div>
+      }
     </form>
   );
 };
