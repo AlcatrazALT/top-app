@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import { Advantages, HhData, Htag, Paragraph, Product, Sort, Tag } from '../../components';
+import { Advantages, HhData, Htag, Product, Sort, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
 import { TopLevelCategory } from '../../types';
