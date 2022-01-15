@@ -11,6 +11,17 @@ const Product = motion(forwardRef(({product, className, ...props}: ProductProps,
   const [isReviewOpened, setIsReviewOpened] = useState(false);
   const reviewRef = useRef<HTMLDivElement>(null);
 
+  const variants = {
+    visible: {
+      opacity: 1,
+      height: 'auto'
+    },
+    hidden: {
+      opacity: 0,
+      height: 0
+    }
+  };
+
   const toggleReviews = (): void => {
     setIsReviewOpened(!isReviewOpened);
   };
@@ -110,24 +121,27 @@ const Product = motion(forwardRef(({product, className, ...props}: ProductProps,
           >Read reviews</Button>
         </div>
       </Card>
-      <Card
-        className={cn(styles.reviews, {
-          [styles.opened]: isReviewOpened,
-          [styles.closed]: !isReviewOpened
-        })}
-        color='blue'
-        ref={reviewRef}
+      <motion.div
+        variants={variants}
+        initial={'hidden'}
+        animate={isReviewOpened ? 'visible' : 'hidden'}
       >
-        {product.reviews.map(review => (
-          <div key={review._id}>
-            <Review
-              review={review}
-            />
-            <Divider />
-          </div>
-        ))}
-        <ReviewForm productId={product._id} />
-      </Card>
+        <Card
+          className={cn(styles.reviews)}
+          color='blue'
+          ref={reviewRef}
+        >
+          {product.reviews.map(review => (
+            <div key={review._id}>
+              <Review
+                review={review}
+              />
+              <Divider />
+            </div>
+          ))}
+          <ReviewForm productId={product._id} />
+        </Card>
+      </motion.div>
     </div>
   );
 }));
