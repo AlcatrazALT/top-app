@@ -1,18 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useRef, useState } from 'react';
 import styles from './Product.module.css';
 import cn from 'classnames';
 import { ProductProps } from './Product.props';
 import { Button, Card, Divider, Rating, Review, ReviewForm, Tag } from '..';
 import { price } from '../../helpers';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
+const Product = motion(forwardRef(({product, className, ...props}: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   const [isReviewOpened, setIsReviewOpened] = useState(false);
   const reviewRef = useRef<HTMLDivElement>(null);
 
-  const toggleReviews = () => setIsReviewOpened(!isReviewOpened);
+  const toggleReviews = (): void => {
+    setIsReviewOpened(!isReviewOpened);
+  };
 
-  const scrollToReview = () => {
+  const scrollToReview = (): void => {
     setIsReviewOpened(true);
     reviewRef.current?.scrollIntoView({
       behavior: 'smooth',
@@ -21,7 +24,7 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={className} ref={ref} {...props}>
       <Card className={styles.product}>
         <div className={styles.logo}>
           <Image
@@ -127,6 +130,6 @@ const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
       </Card>
     </div>
   );
-};
+}));
 
 export default Product;

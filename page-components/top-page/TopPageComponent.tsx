@@ -27,7 +27,7 @@ const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps
 
       <div>
         {sortedProducts && sortedProducts.map(product => (
-          <Product key={product._id} product={product} />
+          <Product layout key={product._id} product={product} />
         ))}
       </div>
 
