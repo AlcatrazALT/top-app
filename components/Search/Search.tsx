@@ -4,7 +4,7 @@ import styles from './Search.module.css';
 import cn from 'classnames';
 import { Button, Input } from '..';
 import GlassIcon from './glass.svg';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 const Search = ({className, ...props}: SearchProps): JSX.Element => {
   const [search, setSearch] = useState('');

@@ -4,7 +4,7 @@ import { FirstLevelMenuItem, PageItem } from '../../types';
 import styles from './Menu.module.css';
 import cn from 'classnames';
 import Link from 'next/link';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { firstLevelMenu } from '../../helpers';
 import { motion } from 'framer-motion';
 
