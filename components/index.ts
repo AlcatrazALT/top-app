@@ -1,6 +1,7 @@
 
 import Advantages from "./Advantages/Advantages";
 import Button from "./Button/Button";
+import ButtonIcon from "./ButtonIcon/ButtonIcon";
 import Card from "./Card/Card";
 import Divider from "./Divider/Divider";
 import HhData from "./hhData/HhData";
@@ -17,4 +18,4 @@ import Tag from "./Tag/Tag";
 import Textarea from "./Textarea/Textarea";
 import Up from "./Up/Up";
 
-export { Htag, Button, Paragraph, Tag, Rating, Card, HhData, Advantages, Sort, Input, Textarea, Search, Product, Divider, Review, ReviewForm, Up };
+export { Htag, Button, Paragraph, Tag, Rating, Card, HhData, Advantages, Sort, Input, Textarea, Search, Product, Divider, Review, ReviewForm, Up, ButtonIcon };
