@@ -15,5 +15,6 @@ import Search from "./Search/Search";
 import Sort from "./Sort/Sort";
 import Tag from "./Tag/Tag";
 import Textarea from "./Textarea/Textarea";
+import Up from "./Up/Up";
 
-export { Htag, Button, Paragraph, Tag, Rating, Card, HhData, Advantages, Sort, Input, Textarea, Search, Product, Divider, Review, ReviewForm };
+export { Htag, Button, Paragraph, Tag, Rating, Card, HhData, Advantages, Sort, Input, Textarea, Search, Product, Divider, Review, ReviewForm, Up };

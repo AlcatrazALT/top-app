@@ -6,8 +6,9 @@ import Sidebar from '../sidebar/Sidebar';
 import Footer from '../footer/Footer';
 import { AppContextProvider } from '../../contexts/app.context';
 import { IAppContext } from '../../types';
+import { Up } from '../../components';
 
-const Layout = ({children}: LayoutProps) => {
+const Layout = ({children}: LayoutProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Header className={styles.header} />
@@ -16,6 +17,7 @@ const Layout = ({children}: LayoutProps) => {
           {children}
       </div>
       <Footer className={styles.footer} />
+      <Up />
     </div>
   );
 };
