@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, KeyboardEvent } from 'react';
 import { AppContext } from '../../contexts/app.context';
 import { FirstLevelMenuItem, PageItem } from '../../types';
 import styles from './Menu.module.css';
@@ -44,6 +44,13 @@ const Menu = (): JSX.Element => {
       return m;
     }));
   };
+
+  const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string): void => {
+    if (key.code == 'Space' || key.code == 'Enter') {
+      key.preventDefault();
+      openSecondLevel(secondCategory);
+    }
+  };
   
   const buildFirstLevel = (): JSX.Element => {
     return (
@@ -79,6 +86,8 @@ const Menu = (): JSX.Element => {
               <div
                 className={styles.secondLevel}
                 onClick={() => openSecondLevel(m._id.secondCategory)}
+                onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, m._id.secondCategory)}
+                tabIndex={0}
               >
                 {m._id.secondCategory}
               </div>
@@ -89,7 +98,7 @@ const Menu = (): JSX.Element => {
                 animate={m.isOpened ? 'visible' : 'hidden'}
                 className={cn(styles.secondLevelBlock)}
               >
-                {buildThirdLevel(menuItem.route, m.pages)}
+                {buildThirdLevel(menuItem.route, m.pages, m.isOpened ?? false)}
               </motion.div>
             </div>);
         })}
@@ -97,7 +106,7 @@ const Menu = (): JSX.Element => {
     );
   };
 
-  const buildThirdLevel = (route: string, pages: PageItem[]): JSX.Element[] => {
+  const buildThirdLevel = (route: string, pages: PageItem[], isOpen: boolean): JSX.Element[] => {
     return (
       pages.map(page => (
         <motion.div
@@ -109,6 +118,7 @@ const Menu = (): JSX.Element => {
               className={cn(styles.thirdLevel,
                 {[styles.thirdLevelActive] : `/${route}/${page.alias}` === router.asPath})
               }
+              tabIndex={isOpen ? 0 : -1}
             >
               {page.category}
             </a>
