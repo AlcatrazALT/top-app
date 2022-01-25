@@ -10,7 +10,7 @@ import axios from 'axios';
 import { API } from '../../helpers';
 
 const ReviewForm = ({productId, isOpen, className, ...props}: ReviewFormProps):JSX.Element => {
-  const {register, control, handleSubmit, formState: {errors}, reset} = useForm<IReviewForm>();
+  const {register, control, handleSubmit, formState: {errors}, reset, clearErrors} = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string>();
 
@@ -42,6 +42,7 @@ const ReviewForm = ({productId, isOpen, className, ...props}: ReviewFormProps):J
           error={errors.name}
           {...register('name', { required: {value: true, message: 'Name is required'}})}
           tabIndex={isOpen ? 0 : -1}
+          aria-invalid={errors.name ? true : false}
         />
         <Input 
           className={styles.title} 
@@ -73,9 +74,11 @@ const ReviewForm = ({productId, isOpen, className, ...props}: ReviewFormProps):J
           error={errors.description}
           {...register('description', { required: {value: true, message: 'Description is required'}})}
           tabIndex={isOpen ? 0 : -1}
+          aria-label='Review text'
+          aria-invalid={errors.description ? true : false}
         />
         <div className={styles.submit}>
-          <Button appearance='primary' tabIndex={isOpen ? 0 : -1}>Send</Button>
+          <Button appearance='primary' tabIndex={isOpen ? 0 : -1} onClick={() => clearErrors()}>Send</Button>
           <span className={styles.info}>* before publication, the review will undergo preliminary moderation and verification</span>
         </div>
       </div>

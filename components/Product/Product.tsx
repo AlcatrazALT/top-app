@@ -129,6 +129,7 @@ const Product = motion(forwardRef(({product, className, ...props}: ProductProps,
             appearance='ghost' 
             arrow={isReviewOpened ? 'down': 'right'}
             onClick={toggleReviews}
+            aria-expanded={isReviewOpened}
           >Read reviews</Button>
         </div>
       </Card>
