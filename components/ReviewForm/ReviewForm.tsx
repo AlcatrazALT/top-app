@@ -83,20 +83,35 @@ const ReviewForm = ({productId, isOpen, className, ...props}: ReviewFormProps):J
         </div>
       </div>
       {isSuccess &&
-      <div className={cn(styles.success, styles.panel)}>
+      <div
+        className={cn(styles.success, styles.panel)}
+        role='alert'
+      >
         <div className={styles.successTitle}>
           Review sended
         </div>
         <div>
           The review will be published after verification.
         </div>
-        <CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
+        <button 
+          className={styles.close}
+          onClick={() => setIsSuccess(false)}
+          aria-label='Close notification'
+        >
+          <CloseIcon />
+        </button>
       </div>
       }
     {error &&
-      <div className={cn(styles.error, styles.panel)}>
+      <div className={cn(styles.error, styles.panel)} role='alert'>
         {'Something went wrong, reload page'}
-        <CloseIcon className={styles.close} onClick={() => setError(undefined)} />
+        <button 
+          className={styles.close}
+          onClick={() => setError(undefined)}
+          aria-label='Close notification'
+        >
+          <CloseIcon />
+        </button>
       </div>
       }
     </form>
