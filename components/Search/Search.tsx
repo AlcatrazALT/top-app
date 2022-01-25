@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { SearchProps } from './Search.props';
 import styles from './Search.module.css';
 import cn from 'classnames';
@@ -28,8 +28,9 @@ const Search = ({className, ...props}: SearchProps): JSX.Element => {
   };
 
   return (
-    <div
+    <form
       className={cn(className,styles.search)}
+      role="search"
       {...props} 
     >
       <Input
@@ -47,7 +48,7 @@ const Search = ({className, ...props}: SearchProps): JSX.Element => {
       >
         <GlassIcon />
       </Button>
-    </div>
+    </form>
   );
 };
 
