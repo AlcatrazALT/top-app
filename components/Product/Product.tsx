@@ -50,13 +50,23 @@ const Product = motion(forwardRef(({product, className, ...props}: ProductProps,
           {product.title}
         </div>
         <div className={styles.price}>
-          {price(product.price)}
-          {product.oldPrice && <Tag className={styles.oldPrice} color='green'>{price(product.price - product.oldPrice)}</Tag>}
+          <span>
+            <span className='visually-hidden'>Price</span>
+            {price(product.price)}
+          </span>
+          {product.oldPrice &&
+            <Tag className={styles.oldPrice} color='green'>
+              <span className='visually-hidden'>Discount</span>
+              {price(product.price - product.oldPrice)}
+            </Tag>
+          }
         </div>
         <div className={styles.credit}>
+          <span className='visually-hidden'>Credit</span>
           {price(product.credit)}/<span className={styles.month}>month</span>
         </div>
         <div className={styles.rating}>
+          <span className='visually-hidden'>{`Rating + ${product.reviewAvg ?? product.initialRating}`}</span>
           <Rating rating={product.reviewAvg ?? product.initialRating} />
         </div>
         <div className={styles.tags}>
@@ -71,10 +81,10 @@ const Product = motion(forwardRef(({product, className, ...props}: ProductProps,
             </Tag>);
           })}
         </div>
-        <div className={styles.priceTitle}>
+        <div className={styles.priceTitle} aria-hidden={true}>
           Price
         </div>
-        <div className={styles.creditTitle}>
+        <div className={styles.creditTitle}  aria-hidden={true}>
           Credit
         </div>
         <div className={styles.rateTitle}>

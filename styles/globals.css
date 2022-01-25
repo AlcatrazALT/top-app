@@ -15,6 +15,13 @@ a {
 	color: inherit;
 }
 
+.visually-hidden {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+}
+
 * {
 	box-sizing: border-box;
 }

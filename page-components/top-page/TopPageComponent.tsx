@@ -21,7 +21,7 @@ const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps
     <div>
       <div className={styles.title}>
         <Htag tag='h1'>{page.title}</Htag>
-        {products && <Tag color='gray' size='m'>{products.length}</Tag>}
+        {products && <Tag color='gray' size='m' aria-label={products.length + 'elements'}>{products.length}</Tag>}
         <Sort sort={sort} setSort={setSort}></Sort>
       </div>
 
