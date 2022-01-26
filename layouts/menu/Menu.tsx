@@ -1,4 +1,4 @@
-import React, { useContext, KeyboardEvent } from 'react';
+import React, { useContext, KeyboardEvent, useState } from 'react';
 import { AppContext } from '../../contexts/app.context';
 import { FirstLevelMenuItem, PageItem } from '../../types';
 import styles from './Menu.module.css';
@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 
 const Menu = (): JSX.Element => {
   const {menu,firstCategory,setMenu} = useContext(AppContext);
+  const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>();
   const router = useRouter();
   
   const variants = {
@@ -39,6 +40,7 @@ const Menu = (): JSX.Element => {
   const openSecondLevel = (secondCategory: string): void => {
     setMenu && setMenu(menu.map(m => {
       if (m._id.secondCategory === secondCategory) {
+        setAnnounce(m.isOpened ? 'closed' : 'opened');
         m.isOpened = !m.isOpened;
       }
       return m;
@@ -54,9 +56,12 @@ const Menu = (): JSX.Element => {
   
   const buildFirstLevel = (): JSX.Element => {
     return (
-      <>
+      <ul className={styles.firstLevelList}>
         {firstLevelMenu.map(menu => (
-          <div key={menu.route}>
+          <li
+            key={menu.route}
+            aria-expanded={menu.id === firstCategory}
+          >
             <Link href={`/${menu.route}`}>
               <a>
                 <div className={cn(styles.firstLevel,{
@@ -68,48 +73,48 @@ const Menu = (): JSX.Element => {
               </a>
             </Link>
             {menu.id === firstCategory && buildSecondLevel(menu)}
-          </div>
+          </li>
         ))}
-      </>
+      </ul>
     );
   };
 
   const buildSecondLevel = (menuItem: FirstLevelMenuItem): JSX.Element => {
     return (
-      <div className={styles.secondBlock}>
+      <ul className={styles.secondBlock}>
         {menu.map(m => {
           if (m.pages.map(p => p.alias).includes(router.asPath.split('/')[2])) {
             m.isOpened = !m.isOpened;
           }
           return (
-            <div key={m._id.secondCategory}>
-              <div
+            <li key={m._id.secondCategory}>
+              <button
                 className={styles.secondLevel}
                 onClick={() => openSecondLevel(m._id.secondCategory)}
                 onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, m._id.secondCategory)}
-                tabIndex={0}
+                aria-expanded={m.isOpened}
               >
                 {m._id.secondCategory}
-              </div>
-              <motion.div
+              </button>
+              <motion.ul
                 layout
                 variants={variants}
                 initial={m.isOpened ? 'visible' : 'hidden'}
                 animate={m.isOpened ? 'visible' : 'hidden'}
-                className={cn(styles.secondLevelBlock)}
+                className={styles.secondLevelBlock}
               >
                 {buildThirdLevel(menuItem.route, m.pages, m.isOpened ?? false)}
-              </motion.div>
-            </div>);
+              </motion.ul>
+            </li>);
         })}
-      </div>
+      </ul>
     );
   };
 
   const buildThirdLevel = (route: string, pages: PageItem[], isOpen: boolean): JSX.Element[] => {
     return (
       pages.map(page => (
-        <motion.div
+        <motion.li
           key={page._id}
           variants={variantsChildren}
         >
@@ -119,11 +124,12 @@ const Menu = (): JSX.Element => {
                 {[styles.thirdLevelActive] : `/${route}/${page.alias}` === router.asPath})
               }
               tabIndex={isOpen ? 0 : -1}
+              aria-current={`/${route}/${page.alias}` === router.asPath ? 'page' : false}
             >
               {page.category}
             </a>
           </Link>
-        </motion.div>
+        </motion.li>
       ))
     );
   };
@@ -133,6 +139,7 @@ const Menu = (): JSX.Element => {
       className={styles.menu} 
       role="navigation"
     >
+      {announce && <span className="visually-hidden" role="log">{announce === 'opened' ? 'open' : 'close'}</span>}
       {buildFirstLevel()}
     </nav>
   );

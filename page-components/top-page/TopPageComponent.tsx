@@ -25,9 +25,9 @@ const TopPageComponent = ({page, firstCategory, products}: TopPageComponentProps
         <Sort sort={sort} setSort={setSort}></Sort>
       </div>
 
-      <div>
+      <div role="list">
         {sortedProducts && sortedProducts.map(product => (
-          <Product layout key={product._id} product={product} />
+          <Product layout key={product._id} product={product} role="listitem" />
         ))}
       </div>
 
