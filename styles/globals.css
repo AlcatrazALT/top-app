@@ -16,10 +16,12 @@ a {
 }
 
 .visually-hidden {
+	position: absolute;
+
+	overflow: hidden;
+
 	width: 0;
 	height: 0;
-	overflow: hidden;
-	position: absolute;
 }
 
 * {

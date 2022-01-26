@@ -1,6 +1,7 @@
 .product {
 	display: grid;
-	grid-template-columns: [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
+	grid-template-columns: [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle]
+		 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
 
 	margin-top: 32px;
 	padding: 32px;
@@ -53,6 +54,9 @@
 
 .advantagesBlock {
 	grid-column: middle / end;
+
+	font-size: 16px;
+	line-height: 24px;
 }
 
 .logo img {
@@ -111,11 +115,6 @@
 	margin-left: 20px;
 }
 
-.advantagesBlock {
-	font-size: 16px;
-	line-height: 24px;
-}
-
 .advantagesTitle {
 	margin-bottom: 4px;
 
@@ -159,6 +158,7 @@
 
 .reviews {
 	overflow: hidden;
+
 	padding: 32px;
 }
 
