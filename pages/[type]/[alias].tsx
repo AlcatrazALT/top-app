@@ -6,6 +6,7 @@ import { API, firstLevelMenu } from '../../helpers';
 import { withLayoutHOC } from '../../layouts';
 import TopPageComponent from '../../page-components/top-page/TopPageComponent';
 import { MenuItem, TopLevelCategory, TopPageModel, ProductModel } from '../../types';
+import Head from 'next/head';
 
 interface TopPageProps extends Record<string, unknown> {
   menu: MenuItem[],
@@ -16,10 +17,20 @@ interface TopPageProps extends Record<string, unknown> {
 
 const TopPage = ({products, firstCategory, page}: TopPageProps) => {
   return (
-    <TopPageComponent 
-      firstCategory={firstCategory}
-      page={page} 
-      products={products} />
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name='description' content={page.metaDescription} />
+        <meta property='og:title' content={page.metaTitle} />
+        <meta property='og:description' content={page.metaDescription} />
+        <meta property='og:type' content='article' />
+      </Head>
+      <TopPageComponent 
+        firstCategory={firstCategory}
+        page={page} 
+        products={products}
+      />
+    </>
   );
 };
 
