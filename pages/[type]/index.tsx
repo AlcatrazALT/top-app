@@ -23,7 +23,7 @@ export default withLayoutHOC(Type);
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: firstLevelMenu.map(menu => `/${menu.route}`),
-    fallback: true
+    fallback: false
   };
 };
 
